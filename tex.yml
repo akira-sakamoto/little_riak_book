@@ -48,11 +48,14 @@ ja:
   langrule: "\\XeTeXlinebreakskip=0em plus 0.1em minus 0.01em\n\\XeTeXlinebreakpenalty=0"
 #  font: Japan
 #  font: Sazanami Mincho
-  font: IPAPMincho
-  bold: VL PGothic
+#  font: IPAPMincho
+#  bold: VL PGothic
 #  bold: Sazanami Gothic
 #  bold: IPAPGothic
-  mono: VL Gothic
+#  mono: VL Gothic
+  font: Meiryo
+  bold: "{* Bold}"
+  italic: "{* Italic}"
   prechap: "第"
   postchap: "章"
   presect: ""

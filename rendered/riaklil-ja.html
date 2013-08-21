@@ -21,7 +21,7 @@ Other formats:
 <a href="#toc_2">Riakって何</a>
 </li>
 <li>
-<a href="#toc_3">About This Book</a>
+<a href="#toc_3">この本について</a>
 </li>
 </ul>
 </li>
@@ -179,15 +179,24 @@ Other formats:
 
 <p>Riakは*Amazon Dynamo*のデザインをベースに、現実のビッグデータを扱うために作られました。Dyanmoは高可用性デザイン---たとえ毎日テラバイトのデータを格納し、供給するという、非常に大きなスケールでもリクエストに素早く応えます。Riakは2009年にオープンソースとなる前に、プロダクションとして使われました。現在はGithub、Comcast、Voxer、Disqus、その他、何百テラバイトのデータを格納し、毎日ノードごとに数GBもを処理している巨大システムで使用されています。</p>
 
-<p>Riak was written on the Erlang programming language. Erlang was chosen due to its strong support for concurrency, solid distributed communication, hot code loading, and fault-tolerance. It runs on a virtual machine, so running Riak requires an Erlang installation.</p>
+<!-- Riak was written on the Erlang programming language. Erlang was chosen due to its strong support for concurrency, solid distributed communication, hot code loading, and fault-tolerance. It runs on a virtual machine, so running Riak requires an Erlang installation. -->
 
-<p>So should you use Riak? A good rule of thumb for potential users is to ask yourself if every moment of downtime will cost you in some way (money, users, etc). Not all systems require such extreme amounts of uptime, and if you don&#39;t, Riak may not be for you.</p>
+<p>RiakはErlangというプログラム言語で書かれています。強力な同時処理能力、強力な分散コミュニケーション能力、ホットコードローディング、耐障害性がErlangを選択した理由です。仮想マシン上で動作するため、Riakを走らせるにはErlangがインストールされている必要があります。</p>
 
-<h2 id="toc_3">About This Book</h2>
+<p><!- So should you use Riak? A good rule of thumb for potential users is to ask yourself if every moment of downtime will cost you in some way (money, users, etc). Not all systems require such extreme amounts of uptime, and if you don&#39;t, Riak may not be for you. -->
+いかがですか、Riakを使いたくなりましたか？　ポテンシャルユーザーは、ダウンタイムがいくらくらいコスト（金銭的、ユーザーへの、その他）がかかるかを自問してください。すべてのシステムが稼働時間を絶対視するわけではありません。あなたのシステムがそうであれば、Riakでなくても構いません。</p>
 
-<p>This is not an &quot;install and follow along&quot; guide. This is a &quot;read and comprehend&quot; guide. Don&#39;t feel compelled to have Riak, or even have a computer handy, when starting this book. You may feel like installing at some point, and if so, instructions can be found in the <a href="http://docs.basho.com">Riak docs</a>.</p>
+<!-- ## About This Book -->
 
-<p>In my opinion, the most important section of this book is the <a href="#concepts">concepts chapter</a>. If you already have a little knowledge it may start slow, but it picks up in a hurry. After laying the theoretical groundwork, we&#39;ll move onto helping <a href="#developers">developers</a> use Riak, by learning how to query it and tinker with some settings. Finally, we&#39;ll go over the basic details that <a href="#operators">operators</a> should know, such as how to set up a Riak cluster, configure some values, use optional tools, and more.</p>
+<h2 id="toc_3">この本について</h2>
+
+<!-- This is not an "install and follow along" guide. This is a "read and comprehend" guide. Don't feel compelled to have Riak, or even have a computer handy, when starting this book. You may feel like installing at some point, and if so, instructions can be found in the [Riak docs](http://docs.basho.com). -->
+
+<p>本書は「インストールして手順に従ってください」というガイドブックではありません。これは「読んで理解する」ガイドです。本書を始めるに当たって、Riakを持つことを強要するわけではなく、コンピュータを操作させることもありません。その気になったらインストールしてください。そのときは<a href="http://docs.basho.com">Riak docs</a>に説明があります。</p>
+
+<!-- In my opinion, the most important section of this book is the [concepts chapter](#concepts). If you already have a little knowledge it may start slow, but it picks up in a hurry. After laying the theoretical groundwork, we'll move onto helping [developers](#developers) use Riak, by learning how to query it and tinker with some settings. Finally, we'll go over the basic details that [operators](#operators) should know, such as how to set up a Riak cluster, configure some values, use optional tools, and more. -->
+
+<p>私の意見ですが、本書のもっとも大切な章は<a href="#concepts">concepts chapter</a>です。すでにいくらかの知識があるなら、はじめはゆっくりですが、急激に理解が進むことでしょう。基礎を学んでから、<a href="#developpers">開発者</a>がRiakを使う手助けのために、クエリの仕方といくつかの細かい設定を学びます。最終的に、<a href="#operators">オペレーター</a>が知っておくべき基本の全般、たとえばRiakクラスタのセットアップ方法、値の調整、オプションツールなどを学びます。</p>
 <h1 id="toc_4">Concepts</h1>
 
 <p>Believe me, dear reader, when I suggest that thinking in a distributed fashion is awkward. When I had first encountered Riak, I was not prepared for some of its more preternatural concepts. Our brains just aren&#39;t hardwired to think in a distributed, asynchronous manner. Richard Dawkins coined the term <em>Middle World</em>---the serial, rote land humans encounter every day, which exists between the extremes of the very small strangeness of quarks and the vastness of outer space. We don&#39;t consider these extremes clearly because we don&#39;t encounter them on a daily basis, just like distributed computations and storage. So we create models and tools to bring the physical act of scattered parallel resources in line to our more ordinary synchronous terms. While Riak takes great pains to simplify the hard parts, it does not pretend that they don&#39;t exist. Just like you can never hope to program at an expert level without any knowledge of memory or CPU management, so too can you never safely develop a highly available cluster without a firm grasp of a few underlying concepts.</p>

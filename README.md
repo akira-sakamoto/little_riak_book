@@ -20,3 +20,9 @@ bookgen.rb
 ```
 
 The tools to build the PDF were pilfered from the Pro Git book builder. Thanks to that team.
+
+
+### Building PDF for Japanese environment
+
+I used Meiryo font which had Bold and Itallic property.  Unfortunately, it supported only single byte characters.
+
